@@ -1,0 +1,51 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Waiting list{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+
+    Current working user: {% if current_working_user %}{{ current_working_user.first_name }} {% endif %}
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Waiting since</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user  in waiting_list_users %}
+                <tr>
+                    <td scope="row">{{ user.first_name }}</td>
+                </tr>
+                <tr>
+                    <td scope="row">{{ user.profile.date_since_waiting }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if not user.profile.is_waiting and not user.profile.allowed_to_commit %}
+            <a href="/addToWaitinglist">
+                <button>Add yourself to the waiting list</button>
+            </a>
+        {% endif %}
+        {% if user.profile.is_waiting and not user.profile.allowed_to_commit %}
+            <a href="/deleteFromWaitingList">
+                <button>Delete yourself to the waiting list</button>
+            </a>
+        {% endif %}
+        {% if user.profile.allowed_to_commit %}
+            <a href="/finished">
+                <button>I've finished working!</button>
+            </a>
+        {% endif %}
+
+        <p><a href="{% url 'logout' %}">logout</a></p>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">login</a>
+    {% endif %}
+{% endblock %}
