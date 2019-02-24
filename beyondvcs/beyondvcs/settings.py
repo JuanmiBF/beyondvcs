@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'beyondvcs.wsgi.application'
+WSGI_APPLICATION = 'beyondvcs.beyondvcs.wsgi.application'
 
 
 # Database
@@ -124,6 +124,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+BASEURL = 'https://beyondvcs.herokuapp.com/'
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
