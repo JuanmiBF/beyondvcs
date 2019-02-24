@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'beyondvcs.commitwaitlist.apps.CommitwaitlistConfig'
+    'beyondvcs.beyondvcs.commitwaitlist.apps.CommitwaitlistConfig'
 ]
 
 MIDDLEWARE = [
