@@ -1,1 +1,1 @@
-web: gunicorn beyondvcs.wsgi --log-file -
+web: gunicorn beyondvcs.beyondvcs.wsgi --log-file -
