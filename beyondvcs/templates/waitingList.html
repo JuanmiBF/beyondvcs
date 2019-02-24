@@ -8,7 +8,7 @@
     {% if user.is_authenticated %}
     <div class = "column">
         {% if current_working_user %}
-            <b>Current commiting user:</b> {{ current_working_user.first_name }}
+            <b>Current commiting user:</b> {{ current_working_user.first_name }}<br/>
             <b>Commiting since {{ current_working_user.profile.date_since_commiting }}</b>
         {% else %}
             There is no user commiting currently.
