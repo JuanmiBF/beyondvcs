@@ -1,1 +1,1 @@
-web: gunicorn beyondvcs.beyondvcs.wsgi --log-file -
+web: sh -c 'cd beyondvcs && gunicorn beyondvcs.wsgi --log-file -'
