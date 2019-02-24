@@ -41,10 +41,6 @@ INSTALLED_APPS = [
     'commitwaitlist.apps.CommitwaitlistConfig',
 ]
 
-MODULES = [
-    'commitwaitlist',
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
