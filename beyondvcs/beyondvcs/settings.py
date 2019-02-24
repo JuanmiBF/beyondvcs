@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'commitwaitlist.apps.CommitwaitlistConfig'
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'beyondvcs.beyondvcs.urls'
+ROOT_URLCONF = 'beyondvcs.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'beyondvcs.beyondvcs.wsgi.application'
+WSGI_APPLICATION = 'beyondvcs.wsgi.application'
 
 
 # Database
