@@ -6,12 +6,14 @@ from django.utils import timezone
 
 
 def waiting_list(request):
-	users = User.objects.filter(profile__is_waiting=True).order_by('profile__date_since_waiting').select_related('profile')
+	users = User.objects.filter(profile__is_waiting=True).order_by('profile__date_since_waiting').select_related(
+		'profile')
 	current_working_user = User.objects.filter(profile__allowed_to_commit=True)
 	if current_working_user:
 		current_working_user = current_working_user[0]
 
-	return render(request, 'waitingList.html', {'waiting_list_users': users, 'current_working_user': current_working_user})
+	return render(request, 'waitingList.html',
+				  {'waiting_list_users': users, 'current_working_user': current_working_user})
 
 
 def set_waiting(request):
@@ -42,10 +44,10 @@ def finished(request):
 	profile.allowed_to_commit = False
 	Profile.save(profile)
 
-	users_waiting = User.objects.filter(profile__is_waiting=True).order_by('profile__date_since_waiting').select_related('profile')
-	# No se guarda el cambio de allowed to commit
+	users_waiting = User.objects.filter(profile__is_waiting=True).order_by(
+		'profile__date_since_waiting').select_related('profile')
 	if users_waiting:
-		profile_to_commit = users_waiting[0]
+		profile_to_commit = users_waiting[0].profile
 		profile_to_commit.allowed_to_commit = True
 		profile_to_commit.is_waiting = False
 		profile_to_commit.date_since_waiting = None
