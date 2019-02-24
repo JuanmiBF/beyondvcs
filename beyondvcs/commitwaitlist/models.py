@@ -9,6 +9,7 @@ class Profile(models.Model):
 	allowed_to_commit = models.BooleanField(default=False)
 	is_waiting = models.BooleanField(default=False)
 	date_since_waiting = models.DateTimeField(null=True)
+	date_since_commiting = models.DateTimeField(null=True)
 
 	def __str__(self):
 		return self.user.first_name

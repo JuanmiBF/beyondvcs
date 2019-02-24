@@ -4,10 +4,27 @@
 {% block title %}Waiting list{% endblock %}
 
 {% block content %}
+    <div class = "columns">
     {% if user.is_authenticated %}
-
-    Current working user: {% if current_working_user %}{{ current_working_user.first_name }} {% endif %}
-
+    <div class = "column">
+        {% if current_working_user %}
+            <b>Current commiting user:</b> {{ current_working_user.first_name }}
+            <b>Commiting since {{ current_working_user.profile.date_since_commiting }}</b>
+        {% else %}
+            There is no user commiting currently.
+        {% endif %}
+    {% if current_working_user == user %}
+        <article class="message is-info">
+            <div class="message-header">
+                <p>You are currently commiting!</p>
+            </div>
+            <div class="message-body">
+                Remember to tell us when you're done to let your partners commit!
+            </div>
+        </article>
+    {% endif %}
+    </div>
+    <div class = "column">
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -19,8 +36,6 @@
             {% for user  in waiting_list_users %}
                 <tr>
                     <td scope="row">{{ user.first_name }}</td>
-                </tr>
-                <tr>
                     <td scope="row">{{ user.profile.date_since_waiting }}</td>
                 </tr>
             {% endfor %}
@@ -29,23 +44,25 @@
 
         {% if not user.profile.is_waiting and not user.profile.allowed_to_commit %}
             <a href="/addToWaitinglist">
-                <button>Add yourself to the waiting list</button>
+                <button class = "button">Get in the queue</button>
             </a>
         {% endif %}
         {% if user.profile.is_waiting and not user.profile.allowed_to_commit %}
             <a href="/deleteFromWaitingList">
-                <button>Delete yourself to the waiting list</button>
+                <button class = "button">Stop waiting</button>
             </a>
         {% endif %}
         {% if user.profile.allowed_to_commit %}
             <a href="/finished">
-                <button>I've finished working!</button>
+                <button class = "button">I've finished commiting!</button>
             </a>
         {% endif %}
 
-        <p><a href="{% url 'logout' %}">logout</a></p>
     {% else %}
         <p>You are not logged in</p>
-        <a href="{% url 'login' %}">login</a>
     {% endif %}
+    </div>
+    <div class = "column"></div>
+    <div class = "column"></div>
+    </div>
 {% endblock %}
